@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public final class Interview {
 
-    /** TODO
+    /** TODO:
      * This function returns if the two texts are similar based on if they have a similar entropy of the HashMap
      * @return boolean based on if the entropy is similar
      */
@@ -13,7 +13,7 @@ public final class Interview {
         return null;
     }
 
-    /** TODO
+    /** TODO:
      * This function returns the difference in frequencies of two HashMaps which corresponds
      * to the sum of the differences of frequencies for each letter.
      * @return the difference in frequencies of two HashMaps
@@ -22,7 +22,7 @@ public final class Interview {
         return null;
     }
 
-    /** TODO
+    /** TODO:
      * @return This function returns the entropy of the HashMap
      */
     public static Double calculateEntropy(HashMap<Character, Integer> map){
@@ -30,14 +30,32 @@ public final class Interview {
     }
 
     /**
+     * TODO:
      * This function reads a text file {filenamme} and returns the appended string of all lines
      * in the text file
      */
     public static String readFile(String filename) throws IOException {
-        return null;
+        BufferedReader bReader;
+        String line;
+        String returString = "";
+        try {
+            bReader = new BufferedReader(new FileReader(new File(filename)));
+            line = bReader.readLine();
+            while (line != null) {
+                returString += line;
+                line = bReader.readLine();
+            }
+            bReader.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+
+        return returString;
     }
 
-    /** TODO
+    /** TODO:
      * This function takes a string as a parameter and creates and returns a HashTable
      * of character frequencies
      */
@@ -45,10 +63,10 @@ public final class Interview {
         return null;
     }
 
-    /** TODO
+    /** TODO:
      * This function takes a character as a parameter and returns if it is a letter in the alphabet
      */
     public static Boolean isAlphabetic(Character c){
-        return null;
+        return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
     }
 }

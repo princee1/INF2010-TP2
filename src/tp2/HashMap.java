@@ -73,7 +73,7 @@ public class HashMap<KeyType, DataType> {
         return size == 0;
     }
 
-    /** TODO
+    /** TODO:
      * Increases capacity by CAPACITY_INCREASE_FACTOR (multiplication) and
      * reassigns all contained values within the new map
      */
@@ -81,7 +81,7 @@ public class HashMap<KeyType, DataType> {
         return;
     }
 
-    /** TODO
+    /** TODO:
      * Finds if map contains a key
      * @param key Key which we want to know if exists within map
      * @return if key is already used in map
@@ -90,7 +90,7 @@ public class HashMap<KeyType, DataType> {
         return false;
     }
 
-    /** TODO
+    /** TODO:
      * Finds the value attached to a key
      * @param key Key which we want to have its value
      * @return DataType instance attached to key (null if not found)
@@ -99,7 +99,7 @@ public class HashMap<KeyType, DataType> {
         return null;
     }
 
-    /**TODO
+    /**TODO:
      * Assigns a value to a key
      * @param key Key which will have its value assigned or reassigned
      * @return Old DataType instance at key (null if none existed)
@@ -108,7 +108,7 @@ public class HashMap<KeyType, DataType> {
         return null;
     }
 
-    /**TODO
+    /**TODO:
      * Removes the node attached to a key
      * @param key Key which is contained in the node to remove
      * @return Old DataType instance at key (null if none existed)
@@ -117,7 +117,7 @@ public class HashMap<KeyType, DataType> {
         return null;
     }
 
-    /**TODO
+    /**TODO:
      * Removes all nodes contained within the map
      */
     public void clear() {
