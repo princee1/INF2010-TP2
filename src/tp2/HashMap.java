@@ -2,6 +2,8 @@ package tp2;
 
 import java.security.KeyStore;
 
+import javax.lang.model.element.Element;
+
 public class HashMap<KeyType, DataType> {
 
     private static final int DEFAULT_CAPACITY = 20;
@@ -141,8 +143,8 @@ public class HashMap<KeyType, DataType> {
                     if (needRehash())
                         rehash();
                     return null;
-                }
-                currentNode = currentNode.next;
+                } else
+                    currentNode = currentNode.next;
             }
             oldData = currentNode.data;
             currentNode.data = value;
@@ -165,7 +167,37 @@ public class HashMap<KeyType, DataType> {
      */
     public DataType remove(KeyType key) {
 
-        return null;
+        DataType oldDataType;
+        int hashKey = hash(key);
+        Node<KeyType, DataType> currentNode = map[hashKey];
+        Node<KeyType, DataType> previousNode;
+        // Node<KeyType, DataType> currentNode1 = new Node<KeyType, DataType>(key,null);
+
+        if (currentNode != null) {
+            while (!currentNode.key.equals(key) && currentNode.next != null) {
+                if (currentNode.next.key.equals(key)) {
+                    oldDataType = currentNode.next.data;
+                    currentNode = currentNode.next.next;
+                    size--;
+                    return oldDataType;
+                } else
+                    currentNode = currentNode.next;
+            }
+            if (currentNode.key.equals(key)) {
+
+                oldDataType = currentNode.data;
+                currentNode = currentNode.next;
+                size--;
+                return oldDataType;
+            }
+            oldDataType=map[hashKey].data;
+            map[hashKey] = null;
+            size--;
+            return oldDataType;
+        } else {
+            return null;
+        }
+
     }
 
     /**
@@ -181,10 +213,7 @@ public class HashMap<KeyType, DataType> {
     private Node<KeyType, DataType> getCurrentNode(KeyType key) {
         Node<KeyType, DataType> currentNode = map[hash(key)];
 
-
         while (currentNode != null && !currentNode.key.equals(key)) {
-
-            System.out.println(currentNode.data);
             currentNode = currentNode.next;
 
             if (currentNode == null)
