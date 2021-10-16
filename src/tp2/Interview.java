@@ -66,22 +66,22 @@ public final class Interview {
     public static String readFile(String filename) throws IOException {
         BufferedReader bReader;
         String line;
-        String returnString = "";
+        String text = "";
         try {
-            bReader = new BufferedReader(new FileReader(new File(filename)));
+            bReader = new BufferedReader(new FileReader(new File( filename)));
             line = bReader.readLine();
             while (line != null) {
-                returnString += line;
+                text += line;
                 line = bReader.readLine();
             }
             bReader.close();
         } catch (FileNotFoundException e) {
-
+            System.out.println(e.getMessage());
         } catch (IOException e) {
-
+            // System.out.println(e.getMessage());
         }
 
-        return returnString;
+        return text;
     }
 
     /**
@@ -89,7 +89,7 @@ public final class Interview {
      * HashTable of character frequencies
      */
     public static HashMap<Character, Integer> getFrequencyHashTable(String text) {
-        
+
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);

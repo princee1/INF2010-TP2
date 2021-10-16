@@ -90,12 +90,19 @@ public class HashMap<KeyType, DataType> {
      */
     private void rehash() {
         Node<KeyType, DataType> oldArray[] = map;
+        Node<KeyType, DataType> currentNode;
         this.capacity = HashMap.CAPACITY_INCREASE_FACTOR * oldArray.length;
         map = new Node[this.capacity];
+        size = 0;
 
         for (int i = 0; i < oldArray.length; i++) {
-            if (oldArray[i] != null)
-                map[i] = oldArray[i];
+            currentNode = oldArray[i];
+            while (currentNode != null) {
+                put(currentNode.key, currentNode.data);
+                currentNode = currentNode.next;
+                if (currentNode == null)
+                    break;
+            }
         }
         return;
     }
