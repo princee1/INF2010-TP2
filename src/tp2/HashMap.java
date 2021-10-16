@@ -94,9 +94,9 @@ public class HashMap<KeyType, DataType> {
         map = new Node[this.capacity];
 
         for (int i = 0; i < oldArray.length; i++) {
-            map[i] = oldArray[i];
+            if (oldArray[i] != null)
+                map[i] = oldArray[i];
         }
-
         return;
     }
 
@@ -117,7 +117,6 @@ public class HashMap<KeyType, DataType> {
      * @return DataType instance attached to key (null if not found)
      */
     public DataType get(KeyType key) {
-
         try {
             return getCurrentNode(key).data;
         } catch (NullPointerException e) {
@@ -153,7 +152,6 @@ public class HashMap<KeyType, DataType> {
             size++;
             if (needRehash())
                 rehash();
-
         }
 
         return oldData;
@@ -170,9 +168,6 @@ public class HashMap<KeyType, DataType> {
         DataType oldDataType;
         int hashKey = hash(key);
         Node<KeyType, DataType> currentNode = map[hashKey];
-        Node<KeyType, DataType> previousNode;
-        // Node<KeyType, DataType> currentNode1 = new Node<KeyType, DataType>(key,null);
-
         if (currentNode != null) {
             while (!currentNode.key.equals(key) && currentNode.next != null) {
                 if (currentNode.next.key.equals(key)) {
@@ -190,7 +185,7 @@ public class HashMap<KeyType, DataType> {
                 size--;
                 return oldDataType;
             }
-            oldDataType=map[hashKey].data;
+            oldDataType = map[hashKey].data;
             map[hashKey] = null;
             size--;
             return oldDataType;
@@ -212,14 +207,11 @@ public class HashMap<KeyType, DataType> {
 
     private Node<KeyType, DataType> getCurrentNode(KeyType key) {
         Node<KeyType, DataType> currentNode = map[hash(key)];
-
         while (currentNode != null && !currentNode.key.equals(key)) {
             currentNode = currentNode.next;
-
             if (currentNode == null)
                 break;
         }
-
         return currentNode;
     }
 
